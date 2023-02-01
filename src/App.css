@@ -9,7 +9,7 @@ body {
   align-content: center;
   width: 100%;
   align-items: center;
-  height: 100vh;
+  /* height: 100vh; */
 }
 
 .box {

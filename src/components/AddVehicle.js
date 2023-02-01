@@ -3,6 +3,7 @@ import axios from "axios";
 import { URL } from "../constants";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useState } from "react";
+import { Button } from "react-bootstrap";
 const AddVehicle = () => {
   const { user } = useUserAuth();
   const [vehicle, setVehicle] = useState({});
@@ -45,7 +46,7 @@ const AddVehicle = () => {
     }
   };
   return (
-    <div>
+    <div style={{ "margin-top": "25px" }}>
       <h3>Add A Vehicle</h3>
       <div style={{ display: "flex" }}>
         <div style={input}>Enter Model</div>
@@ -92,7 +93,7 @@ const AddVehicle = () => {
         <div style={input}>Enter Type</div>
         <input type={"text"} placeholder="Type" id="type" style={input}></input>
       </div>
-      <button onClick={addVehicle}>Submit</button>
+      <Button onClick={addVehicle}>Submit</Button>
     </div>
   );
 };

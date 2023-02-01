@@ -1,17 +1,17 @@
-import React, { useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import { URL } from "../constants";
 import { useUserAuth } from "../context/UserAuthContext";
 import AddStation from "./AddStation";
 import AddVehicle from "./AddVehicle";
-import CreateAdmin from "./CreateAdmin";
-import axios from "axios";
-import { useEffect } from "react";
-import { URL } from "../constants";
-import GetAllStations from "./GetAllStations";
-import AssignVehicle from "./AssignVehicle";
 import AdminGetBookings from "./AdminGetBookings";
+import AssignVehicle from "./AssignVehicle";
+import CreateAdmin from "./CreateAdmin";
+import GetAllStations from "./GetAllStations";
 import MyBookings from "./MyBookings";
+import "./table.css";
 // import { QRCodeSVG } from "qrcode.react";
 // import { QrReader } from "react-qr-reader";
 const Home = () => {
@@ -40,55 +40,28 @@ const Home = () => {
     };
     getUser();
   }, [db, user]);
-  // console.log(dbUser);
-  // const [data, setData] = useState("No result");
-  // const [read, setRead] = useState(false);
   return (
     <>
-      <div className="p-4 box mt-3 text-center">
-        Hello Welcome <br />
-        {dbUser?.name}
-      </div>
-      {/* <QRCodeSVG value="1" />, */}
-      <div className="d-grid gap-2">
+      <h2 className="box mt-3 p-4 text-center">Hello {dbUser?.name}</h2>
+      <div className=" fixed">
         <Button variant="primary" onClick={handleLogout}>
           Log out
         </Button>
       </div>
       {dbUser?.role === "admin" && (
         <>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <AddStation />
-            <AddVehicle />
-          </div>
-          <div style={{ display: "flex", gap: "10px" }}>
-            <CreateAdmin />
-            <AssignVehicle />
-          </div>
+          {/* <div style={{ display: "flex", gap: "10px" }}> */}
+          <AddStation />
+          <AddVehicle />
+          {/* </div> */}
+          <CreateAdmin />
+          <AssignVehicle />
           <AdminGetBookings />
         </>
       )}
 
       <GetAllStations isAdmin={dbUser?.role === "admin"} />
-      <MyBookings />
-      {/* {!read && (
-        <QrReader
-          constraints={{ facingMode: "environment" }}
-          onResult={(result, error) => {
-            if (!!result) {
-              setData(result?.text);
-              setRead(!read);
-              console.log(`localhost:3000/booking/${result?.text}`);
-            }
-
-            if (!!error) {
-              console.info(error);
-            }
-          }}
-          style={{ width: "100%" }}
-        />
-      )}
-      <p>{data}</p> */}
+      {dbUser.role != "admin" && <MyBookings />}
     </>
   );
 };

@@ -1,6 +1,8 @@
 import { input, URL } from "../constants";
 import axios from "axios";
 import { useUserAuth } from "../context/UserAuthContext";
+import { Button } from "react-bootstrap";
+
 const CreateAdmin = () => {
   const { user } = useUserAuth();
   const makeAdmin = async () => {
@@ -23,7 +25,7 @@ const CreateAdmin = () => {
     }
   };
   return (
-    <div>
+    <div style={{ "margin-top": "25px" }}>
       <h3>Make User Admin</h3>
 
       <div style={{ display: "flex" }}>
@@ -36,7 +38,7 @@ const CreateAdmin = () => {
           required
         />
       </div>
-      <button onClick={makeAdmin}>Submit</button>
+      <Button onClick={makeAdmin}>Submit</Button>
     </div>
   );
 };

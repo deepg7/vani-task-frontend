@@ -2,7 +2,7 @@ import { input, URL } from "../constants";
 import axios from "axios";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useState } from "react";
-
+import { Button } from "react-bootstrap";
 const AddStation = () => {
   const { user } = useUserAuth();
   const [station, setStation] = useState({});
@@ -48,7 +48,7 @@ const AddStation = () => {
     }
   };
   return (
-    <div>
+    <div style={{ "margin-top": "25px" }}>
       <h3>Add A Station</h3>
       <div style={{ display: "flex" }}>
         <div style={input}>Enter Station Name</div>
@@ -105,7 +105,7 @@ const AddStation = () => {
         ></input>
       </div>
 
-      <button onClick={addStation}>Submit</button>
+      <Button onClick={addStation}>Submit</Button>
     </div>
   );
 };

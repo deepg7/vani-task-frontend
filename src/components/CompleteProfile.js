@@ -80,7 +80,7 @@ const CompleteProfile = () => {
         ></input>
       </div>
 
-      <button onClick={registerUser}>Submit</button>
+      <Button onClick={registerUser}>Submit</Button>
     </>
   );
 };

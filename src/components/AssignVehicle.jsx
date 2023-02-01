@@ -3,6 +3,7 @@ import { useUserAuth } from "../context/UserAuthContext";
 import axios from "axios";
 import { URL } from "../constants";
 import { input } from "../constants";
+import { Button } from "react-bootstrap";
 
 const AssignVehicle = () => {
   const { user } = useUserAuth();
@@ -44,7 +45,7 @@ const AssignVehicle = () => {
     }
   };
   return (
-    <div>
+    <div style={{ "margin-top": "25px" }}>
       <h3>Add vehicle to station.</h3>
       <>
         <table>
@@ -92,7 +93,7 @@ const AssignVehicle = () => {
             style={input}
           ></input>
         </div>
-        <button onClick={assignVehicle}>Submit</button>
+        <Button onClick={assignVehicle}>Submit</Button>
       </>
     </div>
   );

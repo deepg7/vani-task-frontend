@@ -6,10 +6,12 @@ import Home from "./components/Home";
 import PhoneSignUp from "./components/PhoneSignUp";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { UserAuthContextProvider } from "./context/UserAuthContext";
-
+import { useWindowSize, useWindowWidth } from "@react-hook/window-size";
 function App() {
+  const size = useWindowWidth();
+  console.log(size);
   return (
-    <Container style={{ width: "400px" }}>
+    <Container style={{ width: size }}>
       <Row>
         <Col>
           <UserAuthContextProvider>

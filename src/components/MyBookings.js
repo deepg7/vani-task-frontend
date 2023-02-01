@@ -3,7 +3,7 @@ import { URL } from "../constants";
 import { useState, useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { QrReader } from "react-qr-reader";
-
+import { Button } from "react-bootstrap";
 const MyBookings = () => {
   const { user } = useUserAuth();
   const [bookings, setBookings] = useState([]);
@@ -20,31 +20,40 @@ const MyBookings = () => {
   }, []);
 
   return (
-    <>
+    <div style={{ "margin-top": "25px" }}>
       <h3>My Booking data</h3>
-      <table>
-        <tr>
-          <th>ID</th>
-          <th>User Name</th>
-          <th>User Phone</th>
-          <th>Vehicle Number Plate</th>
-          <th>Vehicle Model</th>
-          <th>Vehicle Color</th>
-        </tr>
-        {bookings?.map((b) => {
-          return (
-            <tr key={b.id}>
-              <td>{b.id}</td>
-              <td>{b.user.name}</td>
-              <td>{b.user.phone}</td>
-              <td>{b.vehicle.number}</td>
-              <td>{b.vehicle.model}</td>
-              <td>{b.vehicle.color}</td>
+      {bookings.length == 0 ? (
+        <h4 style={{ "margin-top": "25px" }}>You have no active bookings!</h4>
+      ) : (
+        <>
+          <table>
+            <tr>
+              <th>ID</th>
+              <th>User Name</th>
+              <th>User Phone</th>
+              <th>Vehicle Number Plate</th>
+              <th>Vehicle Model</th>
+              <th>Vehicle Color</th>
             </tr>
-          );
-        })}
-      </table>
-      <button onClick={() => setRead(!read)}>Scan Qr to submit vehicle</button>
+            {bookings?.map((b) => {
+              return (
+                <tr key={b.id}>
+                  <td>{b.id}</td>
+                  <td>{b.user.name}</td>
+                  <td>{b.user.phone}</td>
+                  <td>{b.vehicle.number}</td>
+                  <td>{b.vehicle.model}</td>
+                  <td>{b.vehicle.color}</td>
+                </tr>
+              );
+            })}
+          </table>
+
+          <Button onClick={() => setRead(!read)}>
+            Scan Qr to submit vehicle
+          </Button>
+        </>
+      )}
       {read && (
         <QrReader
           constraints={{ facingMode: "environment" }}
@@ -77,7 +86,7 @@ const MyBookings = () => {
           style={{ width: "100%" }}
         />
       )}
-    </>
+    </div>
   );
 };
 
