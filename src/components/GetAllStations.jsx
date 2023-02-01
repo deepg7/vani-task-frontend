@@ -41,12 +41,13 @@ const GetAllStations = (props) => {
         <h3>Station data</h3>
         <table>
           <tr>
-            {props.isAdmin && <th>Id</th>}
+            <th>Id</th>
             <th>Name</th>
             <th>Street</th>
             <th>City</th>
             <th>State</th>
             <th>Pincode</th>
+            <th>Phone</th>
             <th>Get Available Vehicles</th>
           </tr>
           {stations?.map((s) => {
@@ -58,6 +59,7 @@ const GetAllStations = (props) => {
                 <td>{s.city}</td>
                 <td>{s.state}</td>
                 <td>{s.pincode}</td>
+                <td>{s.phone}</td>
                 <td>
                   <Button
                     onClick={() => {
