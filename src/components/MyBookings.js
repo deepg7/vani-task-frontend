@@ -73,10 +73,10 @@ const MyBookings = () => {
                   }
                 )
                 .then((data) => {
-                  window.prompt(data.data[0]);
+                  // success toast here
                 })
                 .catch((e) => {
-                  window.prompt(e);
+                  //error toast here
                 });
             }
             if (!!error) {

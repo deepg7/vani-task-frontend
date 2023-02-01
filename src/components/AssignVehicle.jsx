@@ -9,7 +9,6 @@ const AssignVehicle = () => {
   const { user } = useUserAuth();
   const [vehicles, setVehicles] = useState([]);
   useEffect(() => {
-    console.log("firedfhuief");
     const getVehicles = async () => {
       const db = await axios.get(`${URL}/vehicle/`, {
         headers: { Authorization: `Bearer ${user?.accessToken}` },
@@ -20,7 +19,6 @@ const AssignVehicle = () => {
   }, []);
 
   const assignVehicle = async () => {
-    console.log("fireeee");
     try {
       const vehicleId = document.getElementById("vehicleId").value;
       const stationId = document.getElementById("stationId").value;
@@ -38,7 +36,7 @@ const AssignVehicle = () => {
         document.getElementById("stationId").value = null;
         console.log(updatedVehicle);
       }
-      if (updatedVehicle.data[0] == 0) console.log("not found");
+      // if (updatedVehicle.data[0] == 0) console.log("not found");
     } catch (e) {
       //toast probably
       console.log(e);
@@ -58,9 +56,7 @@ const AssignVehicle = () => {
             <th>Number</th>
             <th>Station</th>
           </tr>
-          {console.log("vehicles", vehicles)}
           {vehicles?.map((v, idx) => {
-            console.log("vehicle", v);
             return (
               <tr key={idx}>
                 <td>{v.id}</td>

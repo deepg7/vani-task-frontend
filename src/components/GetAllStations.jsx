@@ -146,14 +146,10 @@ const GetAllStations = (props) => {
                         }
                       )
                       .then((data) => {
-                        window.prompt(
-                          data.data.VehicleId,
-                          data.data.id,
-                          data.data.UserId
-                        );
+                        //success toast here
                       })
                       .catch((e) => {
-                        window.prompt(e);
+                        //error toast here
                       });
                   }
 
