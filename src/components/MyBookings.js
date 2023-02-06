@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { useUserAuth } from "../context/UserAuthContext";
 import { QrReader } from "react-qr-reader";
 import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 const MyBookings = () => {
   const { user } = useUserAuth();
   const [bookings, setBookings] = useState([]);
@@ -74,8 +75,10 @@ const MyBookings = () => {
                 )
                 .then((data) => {
                   // success toast here
+                  window.location.reload();
                 })
                 .catch((e) => {
+                  toast.error(JSON.stringify(e.response.data.errors || e));
                   //error toast here
                 });
             }

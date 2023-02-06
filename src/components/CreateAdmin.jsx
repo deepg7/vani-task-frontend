@@ -2,6 +2,7 @@ import { input, URL } from "../constants";
 import axios from "axios";
 import { useUserAuth } from "../context/UserAuthContext";
 import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const CreateAdmin = () => {
   const { user } = useUserAuth();
@@ -20,7 +21,9 @@ const CreateAdmin = () => {
         console.log(dbUser.data);
       }
       if (!dbUser.data[0]) console.log("not found");
+      window.location.reload();
     } catch (e) {
+      toast.error(JSON.stringify(e.response.data.errors || e));
       console.log(e);
     }
   };

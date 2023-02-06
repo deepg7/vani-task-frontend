@@ -4,6 +4,7 @@ import { URL } from "../constants";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 const AddVehicle = () => {
   const { user } = useUserAuth();
   const [vehicle, setVehicle] = useState({});
@@ -36,12 +37,12 @@ const AddVehicle = () => {
       );
       if (enteredVehicle.status == 201) {
         setVehicle(enteredVehicle.data);
-        //add toast probably
+        window.location.reload();
         clearForm();
         console.log(vehicle);
       }
     } catch (e) {
-      //toast probably
+      toast.error(JSON.stringify(e.response.data.errors || e));
       console.log(e);
     }
   };

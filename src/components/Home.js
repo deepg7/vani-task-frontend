@@ -12,8 +12,7 @@ import CreateAdmin from "./CreateAdmin";
 import GetAllStations from "./GetAllStations";
 import MyBookings from "./MyBookings";
 import "./table.css";
-// import { QRCodeSVG } from "qrcode.react";
-// import { QrReader } from "react-qr-reader";
+import { ToastContainer } from "react-toastify";
 const Home = () => {
   const { logOut, user } = useUserAuth();
   const navigate = useNavigate();
@@ -42,6 +41,7 @@ const Home = () => {
   }, [db, user]);
   return (
     <>
+      <ToastContainer />
       <h2 className="box mt-3 p-4 text-center">Hello {dbUser?.name}</h2>
       <div className=" fixed">
         <Button variant="primary" onClick={handleLogout}>

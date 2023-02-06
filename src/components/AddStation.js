@@ -3,6 +3,8 @@ import axios from "axios";
 import { useUserAuth } from "../context/UserAuthContext";
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const AddStation = () => {
   const { user } = useUserAuth();
   const [station, setStation] = useState({});
@@ -38,13 +40,14 @@ const AddStation = () => {
       );
       if (enteredStation.status == 201) {
         setStation(enteredStation.data);
-        //add toast probably
+        window.location.reload();
         clearForm();
         console.log(station);
       }
     } catch (e) {
       //toast probably
-      console.log(e);
+      toast.error(JSON.stringify(e.response.data.errors || e));
+      console.log(e.response.data);
     }
   };
   return (

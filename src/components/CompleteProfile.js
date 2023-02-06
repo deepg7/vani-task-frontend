@@ -1,9 +1,9 @@
-import { useState } from "react";
+import axios from "axios";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { useUserAuth } from "../context/UserAuthContext";
+import { toast, ToastContainer } from "react-toastify";
 import { input, URL } from "../constants";
-import axios from "axios";
+import { useUserAuth } from "../context/UserAuthContext";
 
 const CompleteProfile = () => {
   const { logOut, user } = useUserAuth();
@@ -37,10 +37,12 @@ const CompleteProfile = () => {
       if (dbUser.status == 201) navigate("/home");
     } catch (e) {
       console.log(e);
+      toast.error(JSON.stringify(e.response.data.errors || e));
     }
   };
   return (
     <>
+      <ToastContainer />
       <div className="d-grid gap-2">
         <Button variant="primary" onClick={handleLogout}>
           Log out

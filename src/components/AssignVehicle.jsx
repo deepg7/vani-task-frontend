@@ -4,6 +4,7 @@ import axios from "axios";
 import { URL } from "../constants";
 import { input } from "../constants";
 import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const AssignVehicle = () => {
   const { user } = useUserAuth();
@@ -35,10 +36,12 @@ const AssignVehicle = () => {
         document.getElementById("vehicleId").value = null;
         document.getElementById("stationId").value = null;
         console.log(updatedVehicle);
+        window.location.reload();
       }
       // if (updatedVehicle.data[0] == 0) console.log("not found");
     } catch (e) {
-      //toast probably
+      //toast
+      toast(JSON.stringify(e.response.data.errors || e));
       console.log(e);
     }
   };

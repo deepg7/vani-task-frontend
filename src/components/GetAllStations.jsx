@@ -7,6 +7,7 @@ import { QRCodeSVG } from "qrcode.react";
 import { QrReader } from "react-qr-reader";
 import { Button } from "react-bootstrap";
 import "./table.css";
+import { toast } from "react-toastify";
 const GetAllStations = (props) => {
   const { user } = useUserAuth();
   const [stations, setStations] = useState([]);
@@ -146,10 +147,12 @@ const GetAllStations = (props) => {
                         }
                       )
                       .then((data) => {
-                        //success toast here
+                        window.location.reload();
                       })
                       .catch((e) => {
-                        //error toast here
+                        toast.error(
+                          JSON.stringify(e.response.data.errors || e)
+                        );
                       });
                   }
 
